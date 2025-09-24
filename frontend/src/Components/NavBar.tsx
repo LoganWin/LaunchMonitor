@@ -1,4 +1,5 @@
-import {Paper, Group, Text, Anchor, Button} from '@mantine/core'
+import { type FC } from 'react'
+import { Anchor, Box, Button, Container, Group, Text } from '@mantine/core'
 
 const navItems = [
   { label: 'Overview', href: '#overview' },
@@ -6,44 +7,45 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ]
 
-const NavBar = () => {
-return(
-<Paper
-        withBorder
-        radius="lg"
-        shadow="xs"
-        p="sm"
-        pos="fixed"
-        top={16}
-        left="50%"
-        style={{
-          transform: 'translateX(-50%)',
-          width: 'min(92%, 1080px)',
-          background: 'rgba(255, 255, 255, 0.9)',
-          backdropFilter: 'blur(12px)',
-          borderColor: 'rgba(229, 231, 235, 0.8)',
-          zIndex: 1000,
-        }}
-      >
-        <Group justify="space-between" wrap="nowrap">
-          <Text fw={700}>Polished Landing</Text>
-          <Group gap="lg" visibleFrom="sm" fw={500} c="gray.6">
+const NavBar: FC = () => {
+  return (
+    <Box
+      component="header"
+      pos="sticky"
+      top={0}
+      py="sm"
+      style={{
+        zIndex: 1000,
+        backdropFilter: 'blur(18px)',
+        background: 'linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,248,238,0.78) 100%)',
+        boxShadow: '0 12px 28px rgba(17, 24, 39, 0.1)',
+      }}
+    >
+      <Container size="lg">
+        <Group justify="center" align="center" wrap="nowrap">
+          <Group gap="xl" visibleFrom="sm" fw={500} c="gray.6" >
             {navItems.map((item) => (
-              <Anchor key={item.label} href={item.href} underline="never" c="gray.6">
+              <Anchor
+                key={item.label}
+                href={item.href}
+                underline="never"
+                c="gray.6"
+                style={{ transition: 'color 120ms ease' }}
+                onMouseEnter={(event) => {
+                  event.currentTarget.style.color = '#111827'
+                }}
+                onMouseLeave={(event) => {
+                  event.currentTarget.style.color = 'var(--mantine-color-gray-6)'
+                }}
+              >
                 {item.label}
               </Anchor>
             ))}
           </Group>
-          <Group gap="sm" wrap="nowrap">
-            <Button radius="xl" variant="light" color="dark" visibleFrom="sm">
-              Login
-            </Button>
-            <Button radius="xl" variant="gradient" gradient={{ from: 'pink', to: 'orange' }}>
-              Get started
-            </Button>
-          </Group>
         </Group>
-      </Paper>
-);
+      </Container>
+    </Box>
+  )
 }
-export default NavBar;
+
+export default NavBar

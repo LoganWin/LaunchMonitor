@@ -25,3 +25,20 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.floating-card {
+  transform: rotate(var(--initial-rotation, 0deg));
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--initial-rotation, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(var(--initial-rotation, 0deg));
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--initial-rotation, 0deg));
+  }
+}
